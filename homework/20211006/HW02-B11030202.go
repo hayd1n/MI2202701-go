@@ -29,17 +29,32 @@ func login() bool {
 	return password_input == password
 }
 
-func atm() {
+func saveMoney() {
 	var money_save float64
-	var money_give float64
 
 	fmt.Print("請輸入整數存款金額：")
 	fmt.Scanln(&money_save)
+
+	current_money += money_save
+}
+
+func giveMoney() {
+	var money_give float64
+
 	fmt.Print("請輸入整數提款金額：")
 	fmt.Scanln(&money_give)
 
-	current_money += money_save
+	if money_give > current_money {
+		fmt.Printf("提領金額超過現有餘額，請重試！\n\n")
+		giveMoney()
+		return
+	}
 	current_money -= money_give
+}
+
+func atm() {
+	saveMoney()
+	giveMoney()
 
 	fmt.Printf("最終餘額：%.f\n", current_money)
 }
@@ -64,4 +79,7 @@ func main() {
 	// Thanks message
 	fmt.Println()
 	fmt.Println("謝謝使用~")
+
+	// Footer
+	fmt.Println(strings.Repeat("=", 53))
 }
