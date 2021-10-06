@@ -17,7 +17,7 @@ import (
 const password = "11030202"
 
 // Current money
-var current_money float64 = 0
+var current_money int32 = 0
 
 func login() bool {
 	// Login
@@ -30,7 +30,7 @@ func login() bool {
 }
 
 func saveMoney() {
-	var money_save float64
+	var money_save int32
 
 	fmt.Print("請輸入整數存款金額：")
 	fmt.Scanln(&money_save)
@@ -39,7 +39,7 @@ func saveMoney() {
 }
 
 func giveMoney() {
-	var money_give float64
+	var money_give int32
 
 	fmt.Print("請輸入整數提款金額：")
 	fmt.Scanln(&money_give)
@@ -56,7 +56,7 @@ func atm() {
 	saveMoney()
 	giveMoney()
 
-	fmt.Printf("最終餘額：%.f\n", current_money)
+	fmt.Printf("最終餘額：%d\n", current_money)
 }
 
 func main() {
